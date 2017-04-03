@@ -348,7 +348,8 @@ echo {a..d}
 # stel je wil beiden 
 echo {000..8..2}{a..d} # dit maakt alle mogelijke combinaties 
 
-echo {{000..8..2},{a..d}} # dit geeft unie 
+#gitbook error?
+#echo {{000..8..2},{a..d}} # dit geeft unie 
 
 echo {{0..9},{a..f}} # allee hexa getallen
 
