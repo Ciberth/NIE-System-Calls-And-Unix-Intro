@@ -1,3 +1,3 @@
-# My Awesome Book
+# NIE-System-Calls-And-Unix-Intro
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+Theoratical and practical look at Unix system calls & unix (os) introduction & a practical bash overview.
