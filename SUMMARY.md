@@ -5,6 +5,7 @@
 * [Summaries](summaries/README.md)
 	* [Intro](summaries/intro.md)
     * [Labo C](summaries/laboc.md)
+    * [Extra](summaries/extra.md)
 * [Notes](notes/README.md)
     * [Lesweek 1](notes/lesweek1.md)
     * [Lesweek 2](notes/lesweek2.md)
