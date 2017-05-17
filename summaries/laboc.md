@@ -42,17 +42,18 @@ Todo
 
 All system calls that need a pointer to an open file make use of a **file descriptor**. When a program is started, three file descriptors automatically are inherited from the shell: **the standard in (0), standard out (1) and standard error (2)**.
 
-![File descriptors](/fd.png)
+![File descriptors](fd.png)
 
 
-| Command                            | Purpose                   | Man-page              |
-| ---------------------------------- |:-------------------------:|:---------------------:|
-| ``open(pathname, flags, mode)``       | Opening a file            | man 2 open            |
-| open(pathname, flags, mode)        | Opening a file            | man 2 open            |
-| open(pathname, flags, mode)        | Opening a file            | man 2 open            |
-| open(pathname, flags, mode)        | Opening a file            | man 2 open            |
-| open(pathname, flags, mode)        | Opening a file            | man 2 open            |
-| open(pathname, flags, mode)        | Opening a file            | man 2 open            |
+| Command                            | Purpose                               | Man-page              |
+| ----------------------------------:|:-------------------------------------:|:---------------------:|
+| ``open(pathname, flags, mode)``    | Opening a file                        | man 2 open            |
+| ``read(fd, buffer, count)``        | Reading a file descriptor             | man 2 read            |
+| ``write(fd, buffer, count)``       | Writing to a file descriptor          | man 2 write           |
+| ``close(fd)``                      | Closing a file descriptor             | man 2 close           |
+| ``unlink(pathname)``               | Deleting a file                       | man 2 unlink          |
+| ``stat(path, buf)``                | Get file status                       | man 2 stat            |
+| ``_exit(status)``                  | Terminate calling process             | man 2 exit            |
 
 
 
