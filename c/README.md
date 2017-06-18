@@ -5,7 +5,7 @@ This folder contains summaries, overviews and examples on how to program, write 
  
 With gitbook-plugin-ace code snippets will be displayed as followed:
 
-{%ace edit=true, lang='c_cpp'%}
+{%ace edit=true, lang='c_cpp', theme='monokai'%}
 // This is a hello world program for C.
 #include <stdio.h>
 
