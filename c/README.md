@@ -15,6 +15,8 @@ int main(){
 }
 {%endace%}
 
+
+
 Images will have a nice caption thanks to the image-captions plugin:
 
-![Forking to create child processes](../images/fork.jpg)
+![1. Forking to create child processes](../images/fork.jpg)
