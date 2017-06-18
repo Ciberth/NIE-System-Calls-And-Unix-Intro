@@ -22,4 +22,4 @@ Images will have a nice caption thanks to the image-captions plugin:
 
 ![Forking to create child processes](../images/fork.jpg)
 
-MIT License: [Link](LICENSE)
+MIT License: [Link](https://github.com/Ciberth/NIE-System-Calls-And-Unix-Intro/blob/master/LICENSE)
