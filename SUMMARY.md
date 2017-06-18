@@ -13,3 +13,5 @@
     * [Lesweek 4](notes/lesweek4.md)
     * [Lesweek 5](notes/lesweek5.md)
     * [Lesweek 7](notes/lesweek7.md)
+* [Q/A](questions/qa.md)
+* [Questions](questions/questions.md)
