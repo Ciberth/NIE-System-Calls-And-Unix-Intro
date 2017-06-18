@@ -1,22 +1,12 @@
 # Week 1: Theorie op 16/02/17
 
-```sh
+## Levels in a Linux system
 
-```
+Een os bestaat uit een aantal software elementen en hardware elementen. Het is het OS dat er voor zorgt dat deze samenwerking goed gaat, dit gebeurt via **systeemaanroepen** (system calls).
 
+Merk op dat er onderscheid gemaakt moet worden tussen de **kernel modus** en de **user modus**. 
 
-# Inleiding
-
-Theorie examen: 20 tal vraagjes
-
-
-# 1.1 Levels in a Linux system
-
-Een os bestaat uit een aantal software elementen en hardware elementen. Het is het OS dat er voor zorgt dat deze samenwerking goed gaat, dit gebeurt via **systeemaanroepen**.
-
-Merk op dat er onderscheid gemaakt moet worden tussen de kernel modus en de user modus. 
-
-In Unix spreken we van POSIX API die gemapt worden op systeemaanroepen. Het voordeel is dat een programma die voldoet aan die API automatisch geporteert kan worden naar andere distributies (dus een gemeenschappelijke API).
+In Unix spreken we van POSIX API die gemapt worden op systeemaanroepen. Het voordeel is dat een programma die voldoet aan die API automatisch geporteert kan worden naar andere distributies (er is dus sprake van een gemeenschappelijke API).
 
 ## Populariteit van Unix
 
@@ -38,8 +28,8 @@ Een **distributie** is dus de linux **kernel** (incl systeemaanroepen en POSIX i
 Om te schakelen tussen gewone gebruiker en root:
 
 ```sh
-su - # inloggen
-sudo opdracht # individueel commando
+su -            # inloggen
+sudo opdracht   # individueel commando
 ```
 
 # The Bourne Shell
@@ -56,11 +46,11 @@ Alternatieven zijn:
 
 (Objectief volgens M: Bash is vrijwel de slechtste! Deze zou pas op de vierde plaats komen.)
 
-In principe kan je elke soort shell draaien op je toestel
+In principe kan je elke soort shell draaien op je toestel.
 
 Raadpleegbaar via: ``chsh -l`` (voor een lijst, let op je ziet meer) en ``chsh -s`` voor de shell te wijzigen (dodelijk voor root!).
 
-Het probleem met zo een bash shell is dat dit onderhouden moet worden (en dat door 1 persoon). Het loopt dus logischerwijs wat achter.  
+Het probleem met zo een bash shell is dat dit onderhouden moet worden (en dat door maar 1 persoon). Het loopt dus logischerwijs wat achter.  
 
 # 2.2 Using the shell
 
@@ -69,8 +59,8 @@ De syntax is opdracht [opties] [argumenten].
 Vb
 
 ```sh
-cat tien # voor bestand tien (met cijfers 1 tot 10) te lezen
-shuf tien # voor uitvoer van tien maar geshuffeld
+cat tien     # voor bestand tien (met cijfers 1 tot 10) te lezen
+shuf tien    # voor uitvoer van tien maar geshuffeld
 ```
 
 Je kan opties meegeven op de lange manier via --langenaam of kort via -n
@@ -93,16 +83,13 @@ Als je --input-range ziet staan is het duidelijk maar om er op te komen is dat n
 
 De traditionele unix manier (uit de jaren zeventig) maakt gebruik van de **short opties**.
 
-Alternatieve van vorig voorbeeld is
+Alternatieve van vorig voorbeeld is:
 
 ```sh
 shuf -n 5 -i 100-200
 ```
 
-Dat is de traditionele manier (duidelijk korter).
-
-
-Combinatie is ook mogelijk
+Dan is de traditionele manier duidelijk korter. Een combinatie is ook mogelijk:
 
 (r is repeat)
 
@@ -150,15 +137,15 @@ declare -p ${!P*} # hier zijn er met -x
 declare -x x 
 bash
 declare -p x
-# om het weg te doen
-declare +x x # dus + iets neemt het weg - past iets toe 
-env # geeft u overzicht van enkel die attributen die x hebben
-export ... # doet niet anders dan declare -x
-#stel x bestaat
+                # om het weg te doen
+declare +x x    # dus + iets neemt het weg - past iets toe 
+env             # geeft u overzicht van enkel die attributen die x hebben
+export ...      # doet niet anders dan declare -x
+                # stel x bestaat
 echo $x 
 unset x 
-echo $x # je krijgt nu niets
-#stel je wilt nu een fout krijgen --> opties
+echo $x         # je krijgt nu niets
+                # stel je wilt nu een fout krijgen --> opties gebruiken
 ```
 
 (Typisch bash, in andere shells is dit anders!)
@@ -168,46 +155,53 @@ Opties: helaas is er geen uniforme manier.
 Je hebt dus opties die het gedrag van de shell beïnvloeden.
 
 Bvb genereer fout als variabele niet ingevuld is. 
-Dit doe je met shell options en doe je via ``set +/- o`` of ``shopt -o``. Dit moet je beschouwen als schakelaars.
+Dit doe je met shell options en doe je via ``set +/- o`` of ``shopt -o``. Dit moet je beschouwen als **schakelaars**!
 
 ```sh
-set -o # geeft lijst van alle opties
-set +o # dezelfde info maar nu in de vorm dat hoe je ze hierin krijgt (voor programmatische verwerking)
+set -o              # geeft lijst van alle opties
+set +o              # dezelfde info maar nu in de vorm hoe je ze hierin krijgt 
+                    # (voor programmatische verwerking)
 
-# handig in shell scripts
-set +/-o verbose # volledige vermelding voor elke regel
+                    # handig in shell scripts
+set +/-o verbose    # volledige vermelding voor elke regel
 set +/-o xtrace
-set +/-o noclobber # 
+set +/-o noclobber 
+```
 
-# stel file t (met wat letters)
-ls > t # bestand t is omzeep
+Enkele voorbeelden:
 
-# met die optie noclobber (set -C)
+```sh
+                    # stel file t (met wat letters)
+ls > t              # bestand t is omzeep
+
+                    # met die optie noclobber (set -C)
 set -C
-echo xazeqsd > t # hij gaat da nie willen doen (zo vermijd je dat je bestaande bestandjes kapot maakt)
+echo xazeqsd > t    # hij gaat da nie willen doen 
+                    # (zo vermijd je dat je bestaande bestandjes kapot maakt)
 set +C 
-## nu gaat da wel 
+                    # En nu gaat da wel 
 
-echo $x # leeg 
+echo $x             # leeg 
 
 set -u 
-echo $x # een fout omdat hij unbound is 
+echo $x             # een fout omdat hij unbound is 
 
 
 set -e 
 declare -p 
-echo $shell # inhoud opvragen van variabele die bestaat 
-echo $x # x bestaat niet
-#
+echo $shell         # inhoud opvragen van variabele die bestaat 
+echo $x             # x bestaat niet
+
 
 unset x 
 set -e 
 set -u 
-echo $x # u shell is kapot 
+echo $x             # u shell is kapot 
+
 # dus als er een fout optreed dat hij zijn eigen de nek omwringt 
 # dus zeer foutbestandigproof 
 # dus set -e is zeer goed zodat er niets verkeerd gaat
-# van zodra je een shell script schrijft met onvoldoende foutopvang zet maar die set -e 
+# !!! van zodra je een shell script schrijft met onvoldoende foutopvang zet maar die set -e 
 
 ```
 
@@ -227,16 +221,16 @@ shopt -u # unset
 
 **Hier moet je 1 onthouden voor in scripts: de extglob functie (staat in de interactieve shell standaard aan maar in scripts standaard uit) !!!!**
 
-Dus vanvoor in je script de extglob aanzetten ``shopt -s extglob``.
+Dus vanvoor in je script de extglob aanzetten ``shopt -s extglob`` !!
 
-Recursief in map via ** is via globstar bvb.
-Noaseglob optie aan zetten dan krijg je ook grote letters bij ls a*.
-Nocasematch optie aanzetten is bvb interessant bij string vergelijking dat het er niet toe doet
-strings vgln met == operator (omgekeerd in perl)
+- Recursief in map via ** is via globstar bvb.
+- Noaseglob optie aan zetten dan krijg je ook grote letters bij ls a*.
+- Nocasematch optie aanzetten is bvb interessant bij string vergelijking dat het er niet toe doet.
+- Strings vgln met == operator (omgekeerde van in perl).
 
  
 
-## 2.9 The command path
+## The command path
 
 Sommige zijn **builtin** (door bash implemented) anderen zijn extern.
 
@@ -248,42 +242,43 @@ via het commando **type**. Het eerste dat je moet weten is of het extern of inte
 
 ```sh
 
-type -t printf # als je da commando ingebouwd 
+type -t printf  # als je da commando ingebouwd 
 type -at printf # dan krijg je alle versies 
-type -a printf # plaats waar ze staan (het pad)
+type -a printf  # plaats waar ze staan (het pad)
 
 # een ander alternatief voor het volledige pad te gebruiken bij extern gebruk is het uitschakelen van builtin opdracht
-enable -n printf # zet dus de builtin uit
-enable printf # voor terug te gebruiken 
+enable -n printf    # zet dus de builtin uit
+enable printf       # voor terug te gebruiken 
 
 # hier moet je rekening mee houden bij updates!!!! 
 
-which -a shuf # geeft alle versies van een bepaald commando 
+which -a shuf   # geeft alle versies van een bepaald commando 
 
-type -t shuf # geeft type
+type -t shuf    # geeft type
 type -a shuf
-type shuf # geeft shuf is hashed (/usr/bin/shuf) -> externe programma vlugger vinden
+type shuf       # geeft shuf is hashed (/usr/bin/shuf) -> externe programma vlugger vinden
 
 declare -p BASH_CMDS # toont welke da we onlangs gebruikt hebben
 
 ```
 
 
-PATH kan je aanvullen met ``PATH+=:dir`` doe dit nooit voor root!
+PATH kan je aanvullen met ``PATH+=:dir`` doe dit **nooit voor root!**
 
 Alle opties die je aan bash meegeeft worden beschouwd als set opties dus scripts uitvoeren doe dat met bash en argument.
 
 
 ```sh
 
-echo aa`ls` * ? $shell # waslijst van speciale tekens 
-# hier vrees je dat de shell er speciaal gerief mee gaat doen-> opl wegslashen
+echo aa`ls` * ? $shell      # waslijst van speciale tekens 
+                            # hier vrees je dat de shell er speciaal gerief mee gaat doen 
+                            # -> opl wegslashen
 
-echo aa\`ls\` # je kan "" gebruiken voor letterlijke dingen 
+echo aa\`ls\`               # je kan "" gebruiken voor letterlijke dingen 
 
-echo "aa`ls` * ? $shell" # zwakke manier van quoting
+echo "aa`ls` * ? $shell"    # zwakke manier van quoting
 
-echo 'aa`ls` * ? $shell' # straffe manier van quoting 
+echo 'aa`ls` * ? $shell'    # straffe manier van quoting 
 
 # nu gaat alles individueel gebackslashed worden 
 
@@ -295,14 +290,16 @@ echo $'aa`ls` * ? $she\x0all' # \x0a linefeed die hij zal doen
 
 ```
 
-Stel random passwoord generen
+**Oefening:**
+Genereer een random passwoord:
 
 ```sh
+
+# EXAMEN !!!
 
 shuf -rn 16 -e {a..z} # het concateneren moet je niet zoeken in shuf 
 
 shuf -rn 16 -e {a..z} | paste -sd '' # en je hebt wat je wil 
 
-###### KAN GEVRAAGD WORDEN
 ```
 
