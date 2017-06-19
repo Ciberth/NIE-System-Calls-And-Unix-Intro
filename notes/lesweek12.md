@@ -6,28 +6,28 @@ Indien er weinig geheugen over is moet er gebruik gemaakt worden van swap-space.
 ```sh
 
 free
-free -m # overzicht van gebruikte geheugen en virtueel geheugen (swap)
+free -m         # overzicht van gebruikte geheugen en virtueel geheugen (swap)
 
-swapon # dan zie je waar je swap space vandaan komt
+swapon          # dan zie je waar je swap space vandaan komt
 
 rm t 
 head -c 20m < /dev/zero > t 
 
-ls -l t  # 20 mega groot met allemaal nulletjes
+ls -l t         # 20 mega groot met allemaal nulletjes
 
 mkswap t
 
-# nu kan je toevoegen aan swapspace
+                # nu kan je toevoegen aan swapspace
 
 swapon t 
-# hij geeft melding dat je beter een chmod had gedaan van da filetje
+                # hij geeft melding dat je beter een chmod had gedaan van da filetje
 
 swapon 
-# nu zie je da hij samengesteld is uit meerdere files, dat hij meerdere files gebruikt
+                # nu zie je da hij samengesteld is uit meerdere files, dat hij meerdere files gebruikt
 
-swapoff t # om de swapspace te verwijderen
+swapoff t       # om de swapspace te verwijderen
 
-# hopelijk heb je dat niet nodig
+                # hopelijk heb je dat niet nodig
 
 
 ```
@@ -42,10 +42,10 @@ Bij standaard linux zal je dus een prompt tonen als je een device inplugt. Analo
 cd /etc/udev/rules.d
 ls
 
-82-udisks2-les.rules # heeft jomoreau gemaakt 
-# afhankelijk van welke udisks draait moet je wel rekening mee houden
+82-udisks2-les.rules    # heeft jomoreau gemaakt 
+                        # afhankelijk van welke udisks draait moet je wel rekening mee houden
 
-# inhoud van 82-udisks2-les.rules
+                        # inhoud van 82-udisks2-les.rules
 
 KERNEL=="sd*", ENV{ID_FS_LABEL}=="ROOD", ENV{UDISKS_IGNORE}="1", ENV{UDISKS_FILESYTEM_SHARED}="1"
 KERNEL=="sd*", ENV{ID_FS_LABEL}=="WIT", ENV{UDISKS_IGNORE}="1", ENV{UDISKS_FILESYTEM_SHARED}="1"
@@ -57,26 +57,29 @@ KERNEL=="sd*", ENV{ID_FS_UUID}=="BA21-890E", ENV{UDISKS_IGNORE}="1"
 KERNEL=="sr*", ENV{UDISKS_IGNORE}="1"
 KERNEL=="loop*", ENV{UDISKS_IGNORE}="1"
 
-# einde inhoud
+                        # einde inhoud
 
 ls /media/ 
 
-udisksctl # zo monsterprogramma ctl 
+udisksctl               # zo monsterprogramma ctl 
 
-udisksctl monitor # kijken welke berichten hij onderschept
+udisksctl monitor       # kijken welke berichten hij onderschept
 
-udisksctl info -b /dev/oranje1 # individuele info van een device
+udisksctl info -b /dev/oranje1 
 
-udisksctl mount -b /dev/oranje1 # mounten
+                        # individuele info van een device
+
+udisksctl mount -b /dev/oranje1 
+
+                        # mounten
 ls /media/ORANJE
 
-udisksctl unmount -b /dev/oranje1 # merk op unmount niet umount
+udisksctl unmount -b /dev/oranje1 
 
-# dit is de huidige moderne manier via udisks daemon
-# meerdere manieren dus om devices te mounten
+                        # merk op unmount niet umount
 
-
-
+                        # dit is de huidige moderne manier via udisks daemon
+                        # meerdere manieren dus om devices te mounten
 ``` 
 
 
@@ -88,53 +91,58 @@ Het mounten in map wordt door systemd ook gezien als softwarecomponent gelijk ee
 
 cd /etc/systemd/system/
 ls
-# filekes vb root-geel.mount 
-# die filekes zeggen beschouw het mounten als softwarecomonent
 
-cat root-geel.mount # formaat is windows ini bestanden
+                        # filekes vb root-geel.mount 
+                        # die filekes zeggen beschouw het mounten als softwarecomonent
 
-# inhoud
+cat root-geel.mount     # formaat is windows ini bestanden
+
+                        # inhoud
 [Mount]
 What=/dev/geel
 Where=/root/geel
 Type=vfat
-# je kan ook opties meegeven Options=ro # read only bvb
-# einde inhoud
 
-# de inhoud van die Where is ook de naam van het bestand die twee MOETEN consistent zijn
-# /root/geel/ --> root-geel met extensie .mount
-# dan beschouwt de systemd daemon dan ziet hij het als softwarecomponent
+                        # je kan ook opties meegeven Options=ro # read only bvb
+                        # einde inhoud
 
-# je kan UUDI, PARTUUID, LABEL gebruiken bij What
+                        # de inhoud van die Where is ook de naam van het bestand die twee MOETEN consistent zijn
+                        # /root/geel/ --> root-geel met extensie .mount
+                        # dan beschouwt de systemd daemon dan ziet hij het als softwarecomponent
+
+                        # je kan UUDI, PARTUUID, LABEL gebruiken bij What
 cat root-rood.mount
-# inhoud
+                        # inhoud
 [Mount]
 What=UUID="12F9-5D2C"
 Where=/root/geel
 Type=vfat
-# einde inhoud
+                        # einde inhoud
 
-lsblk -f # het is niet gemount 
+lsblk -f                # het is niet gemount 
 
-ls /root/rood # lege map maar die moet gemaakt zijn!! 
+ls /root/rood           # lege map maar die moet gemaakt zijn!! 
 
 systemctl start root-rood.mount
 
-lsblk -f # het is nu gekoppeld 
+lsblk -f                # het is nu gekoppeld 
 
-systemctl status root-rood.mount # die softwarecomponent is "actief" 
+systemctl status root-rood.mount 
+
+                        # die softwarecomponent is "actief" 
+
 systemctl show root-rood.mount
 
 ls /root/rood
 
-# achtergrond process -> .service
-# voor te mounten -> .mount
-# systemd ziet dus alles als softwarecomponenten die hij moet behandelen
+                        # achtergrond process -> .service
+                        # voor te mounten -> .mount
+                        # systemd ziet dus alles als softwarecomponenten die hij moet behandelen
 
 systemctl stop root-rood.mount
 
-# mapje weer leeg
-# voordeel is 
+                        # mapje weer leeg
+                        # voordeel is 
 
 ```
 
@@ -154,67 +162,74 @@ Op unix bestaat systemd nie die werken nog met het oude system v
 
 
 ```sh
-# er wordt naar de /etc/inittab gekeken
+                # er wordt naar de /etc/inittab gekeken
 
 cd /etc
 vi inittab
 
-# er staan hier regeltjes in 
+                # er staan hier regeltjes in 
 
-# dit zegt default runlevel 5
+                # dit zegt default runlevel 5
+
 id:5:initdefault:
 
-# hoe lager runlvl hoe minder je mag
-# 3 bvb is multi user met netwerking maar geen gui
-# runlvl 6 is rebooten
-# runlvl 0 is shutdown
+                # hoe lager runlvl hoe minder je mag
+                # 3 bvb is multi user met netwerking maar geen gui
+                # runlvl 6 is rebooten
+                # runlvl 0 is shutdown
 
-# System initialization
+                # System initialization
+
 si::sysinit:/etc/rc.d/rc.sysinit 
-# (in die filekes kan je veel van bash leren)
 
-# je kan init 3 doen om van runlevel te veranderen (dynamisch)
+                # (in die filekes kan je veel van bash leren)
 
-# in systemd is een softwarecomponent veel ruimer dan hier 
-# hier is het typisch achtergrondprocessen
+                # je kan init 3 doen om van runlevel te veranderen (dynamisch)
+
+                # in systemd is een softwarecomponent veel ruimer dan hier 
+                # hier is het typisch achtergrondprocessen
 
 cd /etc/rc.d/init.d
 
 ls
 
-# (bash) shell scripts 
-# conventie is dat deze scripts dezelfde naam hebben als de softwarenaam om het te starten
-# vb named, snmpd
+                # (bash) shell scripts 
+                # conventie is dat deze scripts dezelfde naam hebben als de softwarenaam om het te starten
+                # vb named, snmpd
 
 vi snmpd
 
-#in inittab zie je da dialect met nrs
+                # in inittab zie je da dialect met nrs
 
-cd /etc/rc5.d # dus runlvl is hier 5
-# dus wat daar staat is een verzameling wat er moet gebeuren als je naar dat runlvl gaat of als je van dat runlvl komt
+cd /etc/rc5.d   # dus runlvl is hier 5
+                # dus wat daar staat is een verzameling wat er moet gebeuren 
+                # als je naar dat runlvl gaat of als je van dat runlvl komt
 
-# die hebben een prefix van S of van K
+                # die hebben een prefix van S of van K
 
-# de conventie is
+                # de conventie is
 
-# als ik overga van runlvl 5 dan moeten alle scripts met een S lettertje wel die moeten gestart worden
-# als ik runlvl 5 verlaat dan moeten alle scripts met een K uitgevoerd (komt overeen met services die gestopt moeten worden)
+                # als ik overga van runlvl 5 dan moeten alle scripts met een S lettertje wel die moeten gestart worden
+                # als ik runlvl 5 verlaat dan moeten alle scripts met een K uitgevoerd 
+                # (komt overeen met services die gestopt moeten worden)
 
-# S -> naar runlvl
-# K -> verlaat runlvl
+                # S -> naar runlvl
+                # K -> verlaat runlvl
 
-# het nummertje staat er om in die volgorde uitgevoerd te worden
+                # het nummertje staat er om in die volgorde uitgevoerd te worden
 
 ls -l 
-# dit zijn symbolische links naar ../init.d/...
-# bvb S95atd -> ../init.d/atd 
+                # dit zijn symbolische links naar ../init.d/...
+                # bvb S95atd -> ../init.d/atd 
 
-# in /etc/rc6.d zitten vooral K's snmp heeft nog een S om te zeggen "kga rebooten" 
+                # in /etc/rc6.d zitten vooral K's snmp heeft nog een S om te zeggen "kga rebooten" 
 
-# zo kan je runlvl 27 maken en die bevolken met symbolische linken
+                # zo kan je runlvl 27 maken en die bevolken met symbolische linken
 
-chkconfig --list # hier zie je overzicht waarmee je checks kan zetten om in runlvls dingen te wijzigen
-# dus hier kan je zeggen daemon x wil ik aan of uitzetten in runlvl 4 
+chkconfig --list 
+
+                # hier zie je overzicht waarmee je checks kan zetten om in runlvls dingen te wijzigen
+                # dus hier kan je zeggen daemon x wil ik aan of uitzetten in runlvl 4 
 
 ```
 
@@ -240,78 +255,95 @@ Tot daar de oude manier van werken.
 
 ```sh
 
-systemctl # monsterprogramma die alles doet
-systemctl list-units # geeft overzicht van alle componenten die op dit moment actief zijn
+systemctl                   # monsterprogramma die alles doet
+systemctl list-units        # geeft overzicht van alle componenten die op dit moment actief zijn
 systemctl list-units | less
 
-# het begrijp service wordt ook veralgemeend bvb als het maar 1 keer opgestart wordt
-# .target 
-# .mount
-# .service
-# .timer
-# .slice
+                            # het begrijp service wordt ook veralgemeend 
+                            # bvb als het maar 1 keer opgestart wordt:
+                            # .target 
+                            # .mount
+                            # .service
+                            # .timer
+                            # .slice
 
-systemctl is-active snmpd.service # geeft active
-echo $? # exit status 0 wordt teruggeven dus handig in scripts
+systemctl is-active snmpd.service 
+                            
+                            # geeft active
 
-systemctl is-active root-rood.mount # unknown 
+echo $?                     # exit status 0 wordt teruggeven dus handig in scripts
+
+systemctl is-active root-rood.mount 
+
+                            # unknown 
 
 
-# unit bestanden zelf maken doe je in bepaalde map
-# in /lib/systemd/system
+                            # unit bestanden zelf maken doe je in bepaalde map
+                            # in /lib/systemd/system
 
 cd /lib/systemd/system
-# die hebben precies dezelfde naam als de service die ze moeten beschrijven
+                            # die hebben precies dezelfde naam als de 
+                            # service die ze moeten beschrijven
 
-declare -p PS1 # voor prompt aan te passen grote W naar kleine w veranderen
+declare -p PS1              # voor prompt aan te passen grote W naar kleine w veranderen
 
-# de parallele map is de /etc/systemd/system
-# en alles wat je in de etc map zet heeft voorrang op de lib
+                            # de parallele map is de /etc/systemd/system
+                            # en alles wat je in de etc map zet heeft voorrang op de lib
 
 cd /etc/systemd/system
 
-ls # er zijn submapjes die dienen voor kleine wijzigingen die dan gemerged worden
+ls                          # er zijn submapjes die dienen voor kleine wijzigingen die dan gemerged worden
 
-cat sssd.service.d/journal.conf # extensie .conf
+cat sssd.service.d/journal.conf 
 
-systemctl cat sssd.service # die cat is dus de verzameling van de bestandjes
-# edit bestaat ook voor wijziging door te voeren en die zal dan submapje zelf maken
+                            # extensie .conf
 
-# active dead bestaat en das dan zoiets van "keb mijn taken uitgevoerd" maar ik run niemeer
+systemctl cat sssd.service  # die cat is dus de verzameling van de bestandjes
+                            # edit bestaat ook voor wijziging door te voeren en die zal dan submapje zelf maken
+
+                            # active dead bestaat en das dan zoiets van "keb mijn taken uitgevoerd" maar ik run niemeer
 
 
 systemctl --list-units | grep target
 
 
-systemctl list-dependencies graphical.target # en je krijgt boomstructuur
+systemctl list-dependencies graphical.target 
 
-systemctl get-default # wat hem zal doen als hij boot
-# is den target en zal daarvoor al de afhankelijkheden ook opstarten 
+                            # en je krijgt boomstructuur
 
-# equivalent van init bestaat ook
-# je wil multiuser blijve werken ma gui boeit mij nie
-# traditioneel: init 3 
+systemctl get-default       # wat hem zal doen als hij boot
+                            # is den target en zal daarvoor al de afhankelijkheden ook opstarten 
+
+                            # equivalent van init bestaat ook
+                            # je wil multiuser blijve werken ma gui boeit mij nie
+                            # traditioneel: init 3 
 
 systemctl isolate multi-user.target 
 
-# en hij zal dus ook weg gaan uit graphical
-# dus elk van die commando's stopt die component die nie in den andere zaten
+                            # en hij zal dus ook weg gaan uit graphical
+                            # dus elk van die commando's stopt die component die nie in den andere zaten
 
 systemctl is-active graphical.target # inactive
 
-# zonder reboot terug naar graphical
-systemctl start graphical.target # nu ga hem deel van de bootprocedure terug afgaan, gnome enzo
+                            # zonder reboot terug naar graphical
 
-# in omgekeerde volgorde bekijken doe je via --reverse
+systemctl start graphical.target 
 
-# stukje bij slice hieronder
+                            # nu ga hem deel van de bootprocedure terug afgaan, gnome enzo
+
+                            # in omgekeerde volgorde bekijken doe je via --reverse
+
+                            # stukje bij slice hieronder
 
 systemctl show snmpd.service | grep CPU
-# resultaten die je hier ziet kan je dan samenzetten met anderen dingen (slice maken) en dan zeggen "ik wil nie da die dingen samen 10% van men geheugen gebruiken" bvb 
+
+                            # resultaten die je hier ziet kan je dan samenzetten met anderen dingen 
+                            # (slice maken) en dan zeggen 
+                            # "ik wil nie da die dingen samen 10% van men geheugen gebruiken" bvb 
 
 ```
 
-Unit types:
+## Unit types:
 
 - services: daemons
 - targets: equivalent van runlevels (afhankelijkheden om actief te maken) Die dependecies kan je opvragen met show-dependencies
