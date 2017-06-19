@@ -424,15 +424,16 @@ echo {000..8..2}{a..d}
                     # dit maakt alle mogelijke combinaties 
 
 # om de een of andere reden compileert gitbook dubbele {} niet
-#echo {{000..8..2},{a..d}} 
+# dus hier moeten dubbele {} staan ipv a{}a
+#echo a{000..8..2},{a..d}a 
 
                     # dit geeft unie 
 
-#echo {{0..9},{a..f}} 
+#echo a{0..9},{a..f}a 
 
                     # allee hexa getallen
 
-#echo {{0..9},{a..f}}{{0..9},{a..f}} 
+#echo a{0..9},{a..f}aa{0..9},{a..f}a 
 
                     # allee combinaties van 00 tot ff 
 
