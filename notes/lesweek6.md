@@ -407,35 +407,44 @@ Brace expansion wordt super vroeg gedaan!! Als je het wil gebruiken kan je soms 
 
 ```sh 
 
-# vb brace expansion 
+                    # vb brace expansion 
 
 echo {0..8}
 
-echo {0..8..2} # in stapkes van twee 
+echo {0..8..2}      # in stapkes van twee 
 
-echo {000..8..2} # nullen, vooraan 
+echo {000..8..2}    # nullen, vooraan 
 
 echo {a..d}
 
-# stel je wil beiden 
-echo {000..8..2}{a..d} # dit maakt alle mogelijke combinaties 
+                    # stel je wil beiden 
 
-#gitbook error?
-#echo {{000..8..2},{a..d}} # dit geeft unie 
+echo {000..8..2}{a..d} 
 
-echo {{0..9},{a..f}} # allee hexa getallen
+                    # dit maakt alle mogelijke combinaties 
 
-echo {{0..9},{a..f}}{{0..9},{a..f}} # allee combinaties van 00 tot ff 
+
+echo {{000..8..2},{a..d}} 
+
+                    # dit geeft unie 
+
+echo {{0..9},{a..f}} 
+
+                    # allee hexa getallen
+
+echo {{0..9},{a..f}}{{0..9},{a..f}} 
+
+                    # allee combinaties van 00 tot ff 
 
 echo honderden{twee,drie,vier,vijf}duizend 
 
-# nadeel van de plaats is het volgende 
+                    # nadeel van de plaats is het volgende 
 
 x=15
 y=20
 
-echo {$x..$y} # dan krijg je letterlijk die string
-eval "echo {$x..$y}" # dan zal hij het wel doen
+echo {$x..$y}           # dan krijg je letterlijk die string
+eval "echo {$x..$y}"    # dan zal hij het wel doen
 
 ```
 
@@ -446,10 +455,10 @@ Hij gaat da mogelijk anders interpreteren
 
 ```sh
 
-cd ~ # homemap 
+cd ~            # homemap 
 
-# ma je hebt meer aan pushd en popd 
-# behoed u op strings met een ~ want ze worden anders opgevat/geinterpreteerd
+                # ma je hebt meer aan pushd en popd 
+                # behoed u op strings met een ~ want ze worden anders opgevat/geinterpreteerd
 
 ```
 
@@ -461,85 +470,95 @@ Boek is iets te sumier (die fds)
 
 ls -l {01..07}
 
-wc -l $(ls -l {01..07}) # vb 
+wc -l $(ls -l {01..07})     # vb 
 
-# je kan ook vaak tss " " plaatsen 
+                            # je kan ook vaak tss " " plaatsen 
 
 locate TODO 
 
-wc -l $(locate TODO) # alle lijnscheidingstekens zijn vervangen door spaties 
-# kan soms wel kwaad 
-# allee whitespace wordt vervangen door eerste parameter dan in IFS staat (meestal spatie)
-# wil je da behouden dus dan moet je 
+wc -l $(locate TODO)        # alle lijnscheidingstekens zijn vervangen door spaties 
 
-wc -l "$(locate TODO)" # dan behou je de line endings
+                    # kan soms wel kwaad 
+                    # allee whitespace wordt vervangen door 
+                    # eerste parameter dat in IFS staat (meestal spatie)
+                    # wil je da behouden dus dan moet je 
 
-# : de zinloze opdracht 
-# while(:) bvb 
+wc -l "$(locate TODO)" 
+
+                    # dan behou je de line endings
+
+                    # : de zinloze opdracht 
+                    # while(:) bvb 
 
 ls -l <(:)
 
-# je maakt een file descriptor en die verwijst naar een named pipe 
+                    # je maakt een file descriptor en die verwijst naar een named pipe 
 
-# je maakt er dus een om ingelezen te worden 
-# met de volledige uitvoering van het programma (hier :)
+                    # je maakt er dus een om ingelezen te worden 
+                    # met de volledige uitvoering van het programma (hier :)
 
-# het heeft wel maar een levensduur van de opdrachtregel zelf 
-# en hij heeft enkel de readpermissie dus enkel bedoelt om uitgelezen te worden 
+                    # het heeft wel maar een levensduur van de opdrachtregel zelf 
+                    # en hij heeft enkel de readpermissie dus 
+                    # enkel bedoelt om uitgelezen te worden 
 
-# doe je nu 
+                    # doe je nu 
 
 ls -l >(:)
 
-# dan heb je write dus en ist de bedoeling da je er in pushed 
-# dit is dus process substitution
+                    # dan heb je write dus en ist de bedoeling da je er in pushed 
+                    # dit is dus process substitution
 
  head competitors.csv 
 
  cut -d \; -f1,4 competitors.csv 
 
- cut -d \; -f4,1 competitors.csv # dus omwisselen, maar da ga nie :| 
+ cut -d \; -f4,1 competitors.csv 
+ 
+                    # dus omwisselen, maar da ga nie :| 
+                
+                    # oplossing 
 
- # oplossing 
+<(head competitors.csv | cut -d \; -f1 ) 
 
-<(head competitors.csv | cut -d \; -f1 ) # da ding gedraagd zich nu als een bestand 
- # het maakt iets tijdelijks aan die zichzelf zal opkuisen
+                    # da ding gedraagd zich nu als een bestand 
+                    # het maakt iets tijdelijks aan die zichzelf zal opkuisen
 
-cat <(head competitors.csv | cut -d \; -f1 ) # bvb ma das wel dwaas 
+cat <(head competitors.csv | cut -d \; -f1 ) 
 
+                    # bvb ma das wel dwaas 
 
 paste -d \; <(head competitors.csv | cut -d \; -f4 ) <(head competitors.csv | cut -d \; -f1 )
 
-# en dan hebde wel u goesting gekregen :j 
-
-
+                    # en dan hebde wel u goesting gekregen :j 
 
 cut -d \; -f3 winners.csv | sort | uniq | wc
-# 501 
-# je wil join commando simuleren 
-# dus nummerkes gebruiken 
+
+                    # 501 
+                    # je wil join commando simuleren 
+                    # dus nummerkes gebruiken 
 
 
 cut -d \; -f3 winners.csv | sort | uniq | xargs printf ";%d;\n"
 
-# elk van die items tss ; geplaatst 
+                    # elk van die items tss ; geplaatst 
 
 grep -f <(cut -d \; -f3 winners.csv | sort | uniq | xargs printf ";%d;\n") winners.csv 
 
 
 grep -f <(cut -d \; -f3 winners.csv | sort | uniq | xargs printf ";%d;\n") competitors.csv | wc -l 
 
-# 504 ohlala 3 te veel 
+                    # 504 ohlala 3 te veel 
 
 grep -f <(cut -d \; -f3 winners.csv | sort | uniq | xargs printf ";%d;\n") competitors.csv | cut -d \; -f2 | sort | uniq -d 
-# drie nummers 
-# wie zijn da dan wel 
+
+                    # drie nummers 
+                    # wie zijn da dan wel 
 
 
 grep -f <(grep -f <(cut -d \; -f3 winners.csv | sort | uniq | xargs printf ";%d;\n") competitors.csv | cut -d \; -f2 | sort | uniq -d )
 
-# dan krijg je overzicht 
-# overlopers die van nationaliteit veranderen :p 
+                    # dan krijg je overzicht 
+                    # overlopers die van nationaliteit veranderen :p 
 
 
 
@@ -547,54 +566,57 @@ grep -f <(grep -f <(cut -d \; -f3 winners.csv | sort | uniq | xargs printf ";%d;
 
 x=0; wc -l lees tel tien | while read ; do ((x++)) ; echo $x ; done
 
-# tellkerke tot 4 
+                    # tellerke tot 4 
 
 
 x=0; wc -l lees tel tien | while read ; do ((x++)) ; done ; echo $x 
 
-# tellerke terug 0 eh ahja want twordt uitgevoerd in een subshell
+                    # tellerke terug 0 eh ahja want twordt uitgevoerd in een subshell
 
 x=0; wc -l lees tel tien | { while read ; do ((x++)) ; done ; echo $x ; } 
 
-# 4 dan dankzij de { }
+                    # 4 dan dankzij de { }
 
 
-while read; do ((x++)) ; done < <(wc -l lees tel tien) # eerste < is omleiding SPATIE (moet) en dan <() van commandsubstitution
+while read; do ((x++)) ; done < <(wc -l lees tel tien) 
+                    
+                    # eerste < is omleiding SPATIE (moet) en dan <() van commandsubstitution
+
 echo $x 
-# is hier nu ter beschikking  
+                    # is hier nu ter beschikking  
 
 
 x=0 ; while read; do ((x++)) ; done < <(wc -l lees tel tien) ; echo $x 
 
-# OPMERKING
+                    # OPMERKING
 
-eerste | tweede  # subshell
-    kan je altijd schrijven als 
-tweede < <(eerste) # huidige shell 
+eerste | tweede     # subshell
+                    # kan je altijd schrijven als 
+tweede < <(eerste)  # huidige shell 
 
 
 exec {fd}< <(wc -l lees tel tien)
 
-# maakt named pipe 
-# kijk in /proc/1710/fd met ls -l 
+                    # maakt named pipe 
+                    # kijk in /proc/1710/fd met ls -l 
 
 x=0 ; while read <&${fd}; do ((x++)) ; done 
 echo $x 
-# 4
-# mooiste oplossing volgens Moreau 
+
+                    # 4
+                    # mooiste oplossing volgens Moreau 
 
 
-# opmkering over performantie fd 
-# bij leesoperaties boeit het niet veel hier is het niet noemenswaardig
-# ma bij schrijfoperaties (uitvoer) zijn fds veel performanter! 
-
+                    # opmkering over performantie fd 
+                    # bij leesoperaties boeit het niet veel hier is het niet noemenswaardig
+                    # ma bij schrijfoperaties (uitvoer) zijn fds veel performanter! 
 
 
 eerste | tweede 
     kan je ook schrijven als 
-eerste > >(tweede) # maar voor goede toepassing te zien voor dit 
-# da is voor volgende week 
+eerste > >(tweede) 
 
-
+                    # maar voor goede toepassing te zien voor dit 
+                    # da is voor volgende week 
 
 ```
