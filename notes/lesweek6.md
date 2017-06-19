@@ -424,7 +424,7 @@ echo {000..8..2}{a..d}
                     # dit maakt alle mogelijke combinaties 
 
 
-echo {{000..8..2},{a..d}} 
+
 
                     # dit geeft unie 
 
