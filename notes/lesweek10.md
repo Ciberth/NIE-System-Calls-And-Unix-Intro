@@ -16,42 +16,43 @@ Bij het schrijven van scripts zou het een automatisme moeten zijn om eerst
 
 ```sh
 
-# priemgetallen
+        # priemgetallen
+
 i=0; n=0 ; while((++i)) ; do f=($(factor $i)) ; ((${#f[@]}==2)) && { ((n++)) ; p=$i ; echo $n:$p ;} ; done
 
-# set -/+ : aanzetten voor extra info
+        # set -/+ : aanzetten voor extra info
 
 
 i=0; n=0 ; while((++i)) ; do f=($(factor $i)) ; ((${#f[@]}==2)) && { set -x ; ((n++)) ; p=$i ; set +x } ; done
 
 
-# in die verwerking tss () voor traphandler te beperken
+        # in die verwerking tss () voor traphandler te beperken
 
 
 (trap ': i=$i s=$SECONDS ' DEBUG ) ; i=0; n=0 ; while((++i)) ; do f=($(factor $i)) ; ((${#f[@]}==2)) && { set -x ; ((n++)) ; p=$i ; set +x } ; done
 
-# : de zinloze opdracht
-# geef je argumenten mee aan : dan gebruik je da om defaultwaarden te geven
-# ma hier doe je da dan om de argumenten op de opdrachtlijn te zien
+        # : de zinloze opdracht
+        # geef je argumenten mee aan : dan gebruik je da om defaultwaarden te geven
+        # ma hier doe je da dan om de argumenten op de opdrachtlijn te zien
 
-# debug signalen worden enkel gegeneerd in set+x/-x blokken
+        # debug signalen worden enkel gegeneerd in set+x/-x blokken
 
 
 
 (trap ': i=$i s=$SECONDS ' DEBUG ) ; i=0; n=0 ; while((++i)) ; do f=($(factor $i)) ; ((${#f[@]}==2)) && { ((n++)) ; p=$i ; set -x ; set +x } ; done
 
-# dan doe je extreem en doe je dus activering en deactivering sebiet
+        # dan doe je extreem en doe je dus activering en deactivering sebiet
 
 
 ```
 
 
-
+## Stringbewerkingen
 
 
 ```sh
 
-__DATA__ # van in perl kan je doen op volgende manier:
+__DATA__            # van in perl kan je doen op volgende manier:
 
 x='een
 twee
@@ -60,25 +61,25 @@ drie'
 
 declare -p x
 
-rev <<< "$x" # voor inlezen van string
+rev <<< "$x"        # voor inlezen van string
 
 
-# stel echter stringdefinitie met " " dan zijn alle substituties mogelijk
+                    # stel echter stringdefinitie met " " dan zijn alle substituties mogelijk
 
 x="een
 twee
 $(ls)
 drie"
 
-# dan ziet em een opdracht da em moe uitvoeren
+                    # dan ziet em een opdracht da em moe uitvoeren
 
 declare -p x 
-rev <<< "$x" # dan alles van uitvoer van ls ook
+rev <<< "$x"        # dan alles van uitvoer van ls ook
 
-# here strings (<<<) en here documents (XXX)
+                    # here strings (<<<) en here documents (XXX)
 
-# je mag de << vergeten eigenlijk das de oude manier
-# LABEL afspreken en dan leest hem in tot ge weer label doet 
+                    # je mag de << vergeten eigenlijk das de oude manier
+                    # LABEL afspreken en dan leest hem in tot ge weer label doet 
 
 rev << HGF #enter
 een
@@ -87,10 +88,10 @@ $(ls)
 drie
 HGF
 
-# die $ls wordt ook geinterpreteerd  
+                    # die $ls wordt ook geinterpreteerd  
 
 
-# voor als je wilt dat het niet geinterpreteerd worden 1 char ' '
+                    # voor als je wilt dat het niet geinterpreteerd worden 1 char ' '
 rev << H'G'F #enter
 een
 twee
@@ -98,7 +99,7 @@ $(ls)
 drie
 H'G'F
 
-# een andere afspraak is bij - da alle leadingtabs verwijderd 
+                    # een andere afspraak is bij - da alle leadingtabs verwijderd 
 
 rev << -HGF #enter
 een
@@ -107,8 +108,8 @@ $(ls)
 drie
 -HGF
 
-## maar belangrijker dus <<< 
-#### EINDE BASH
+                    ## maar belangrijker dus <<< 
+                    #### EINDE BASH
 
 
 ```
@@ -135,13 +136,14 @@ hier kan je dan cat size doen
 cat dev geeft 8:0 (major nr 8, minor nr 0)
 
 ## COMMAND
-lspci -v
+
+``lspci -v``
 
 gaat alles opzoeken en inhoud gaan uitprinten
 het is dus die sys structuur gaat opzoeken en verzamelen
 
 ## COMMAND
-lsscsi -v 
+``lsscsi -v``
 
 geeft u informatie 
 
@@ -170,69 +172,80 @@ udevadm info -q symlink /dev/sda3
 udevadm info -q name /dev/sda3
 
 
-udevadm info -a /dev/sda3 | less # alle eigenschappen van een device met die van ouderdevice, diskcontrollere, ... tot je bovenaan in hierarchie zit
+udevadm info -a /dev/sda3 | less 
 
-udevadm info -e | less # van alle devices alles
+            # alle eigenschappen van een device met die van ouderdevice, diskcontrollere, ... 
+            # tot je bovenaan in hierarchie zit
 
-udevadm info -e | grep ^P | wc -l # geeft 267
+udevadm info -e | less              # van alle devices alles
 
-# udevadm is een administratie programma die geassocieerd is aan een relatief recent techniek 
+udevadm info -e | grep ^P | wc -l   # geeft 267
 
-# en daardoor afgesplitst is van linux
+            # udevadm is een administratie programma die geassocieerd is aan een relatief recent techniek 
+
+            # en daardoor afgesplitst is van linux
 
 
 
-# usb inpluggen
+            # usb inpluggen
 
-lsblk -f # om te kijken
+lsblk -f    # om te kijken
 
 umount /run/media/root/...
 
-# nummering is inconsistent!!
+            # nummering is inconsistent!!
 
 
-# kernel doet aan hardwaredetectie via IPC --> blijft in kernelmodus 
-# en dan doorgestuurd naar udev in user modus die zoveel mogelijk doet 
-# mislukt het dan crashed het device maar nie u systeem
+            # kernel doet aan hardwaredetectie via IPC --> blijft in kernelmodus 
+            # en dan doorgestuurd naar udev in user modus die zoveel mogelijk doet 
+            # mislukt het dan crashed het device maar nie u systeem
 
 udevadm monitor -k 
-# nen monitor van devices
+
+            # nen monitor van devices
 
 
 ls -l /dev/zwart
-# en is symbolische link
-# na uittrekken, en andere insteken is het weer symbolische link naar dezelfde maar andere usb
-# ma ge moet u da nie aantrekken
+
+            # en is symbolische link
+            # na uittrekken, en andere insteken is het weer symbolische link naar dezelfde maar andere usb
+            # ma ge moet u da nie aantrekken
 
 
 
-# ... udev :/
+            # ... udev :/
 
 
-# volgorde van regels is wel belangrijk!!
+            # volgorde van regels is wel belangrijk!!
+
 /lib/udev/rules.d
 
 declare -p PS1
 
-# dan uitvoeren en van de grote W een kleine w maken
+            # dan uitvoeren en van de grote W een kleine w maken
+
 declare -x PS1="\\w\$ "
 
-# je moet je verplaatsen naar /etc/udev/rules.d
-# voor regels toe te voegen 
-# en dan worden alle files op 1 hoop gegooid
+            # je moet je verplaatsen naar /etc/udev/rules.d
+            # voor regels toe te voegen 
+            # en dan worden alle files op 1 hoop gegooid
 
-# je kan meerdere conditionals en meerdere acties hebben
+            # je kan meerdere conditionals en meerdere acties hebben
 
 KERNEL=="sd*", ATTRS{serial}=="AA040127..", ATTRS{idVendor}=="090c", SYMLINK+="wit%n"
 
-# wees zo specifiek mogelijk zodat aan alle conditionals (attrs) voldaan is voor die simlink gemaakt wordt
+            # wees zo specifiek mogelijk zodat aan alle conditionals (attrs) voldaan is voor die simlink gemaakt wordt
 
-SUBSYSTEMS=="scsi" # da is een voorbeeld van een verwijzing naar ouderdevices
-# er moet dus eenen zijn die scsi noemt
+SUBSYSTEMS=="scsi" 
 
-ACTION!="add", GOTO=".." # goto vaak einde en gaat eigenlijk rest regels negeren
+            # da is een voorbeeld van een verwijzing naar ouderdevices
+            # er moet dus eenen zijn die scsi noemt
 
-hwdb.d # ook folder op hoogte van rules.d
+ACTION!="add", GOTO=".." 
+
+            # goto vaak einde en gaat eigenlijk rest regels negeren
+
+hwdb.d      # ook folder op hoogte van rules.d
 
 ```
 
