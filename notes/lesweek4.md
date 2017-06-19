@@ -273,7 +273,7 @@ x = 1 = 2^0
 dus chmod 777 geeft iedereen alles 700 geeft enkel root alles 744 laat iedereen lezen maar root alles enzoverder
 (getallekes moet ik eens controleren)
 
-```
+```sh
 
 #       Permission                  rwx
 7       read, write and execute     rwx
@@ -281,7 +281,7 @@ dus chmod 777 geeft iedereen alles 700 geeft enkel root alles 744 laat iedereen 
 5       read and execute            r-x
 4       read only                   r--
 3       write and execute           -wx
-2       write only		            -w-
+2       write only                  -w-
 1       execute only		        --x
 0       none		                ---
 ```
