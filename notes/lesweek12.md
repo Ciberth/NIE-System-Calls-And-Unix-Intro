@@ -1,14 +1,10 @@
 # Week 12: Theorie op 19/05/17
 
+Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. 
+
+
+
 Indien er weinig geheugen over is moet er gebruik gemaakt worden van swap-space.
-
-
-
-
-
-
-
-
 
 
 

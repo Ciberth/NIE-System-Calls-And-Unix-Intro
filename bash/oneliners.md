@@ -88,3 +88,31 @@ shuf -rn100 -e y y y y y y y y n | rm -iv {00..99}
 
                 # You only let 1 live
 ```
+
+## Rotating a matrix of numbers
+
+```sh
+shuf -rn36 -i 0..9      
+                    # creating random numbers
+
+shuf -rn36 -i 0..9 | xargs -n6 echo 
+
+                    # group them in columns
+
+shuf -rn36 -i 0..9 | xargs -n6 > x 
+
+                    # x holds the matrix now
+
+xargs -n1 < x | split -l 6
+
+                    # every 6 we split
+
+shuf -rn36 -i 0..9 | xargs -n1 | split -l 6 
+
+                    # total example without x
+cat xaa
+
+paste -d ' ' xa*
+
+
+```

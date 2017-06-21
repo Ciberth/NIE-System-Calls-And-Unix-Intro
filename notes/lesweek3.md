@@ -1,13 +1,7 @@
 # Week 3: Theorie op 02/03/17
 
 
-
-
-
-
-
-
-
+Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. Template text for toc to not corrupt code block. 
 
 
 
