@@ -1,5 +1,21 @@
 # Week 6: Theorie op 23/03/17
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Filedescriptoren
 
 ```sh

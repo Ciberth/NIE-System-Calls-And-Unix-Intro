@@ -1,5 +1,17 @@
 # Week 8: Theorie op 20/04/17
 
+
+
+
+
+
+
+
+
+
+
+
+
 ## Arithmetic substiturion/expansion
 
 ```sh

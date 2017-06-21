@@ -1,5 +1,16 @@
 # Week 3: Theorie op 02/03/17
 
+
+
+
+
+
+
+
+
+
+
+
 ## Basic commands
 
 ```sh

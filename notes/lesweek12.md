@@ -3,6 +3,15 @@
 Indien er weinig geheugen over is moet er gebruik gemaakt worden van swap-space.
 
 
+
+
+
+
+
+
+
+
+
 ```sh
 
 free

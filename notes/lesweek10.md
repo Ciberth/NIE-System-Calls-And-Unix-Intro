@@ -135,25 +135,26 @@ De meeste "gewone" files in deze folder zijn attributen die gebruikt worden bij 
 hier kan je dan cat size doen
 cat dev geeft 8:0 (major nr 8, minor nr 0)
 
-## COMMAND
+**COMMAND**
 
 ``lspci -v``
 
 gaat alles opzoeken en inhoud gaan uitprinten
 het is dus die sys structuur gaat opzoeken en verzamelen
 
-## COMMAND
+**COMMAND**
+
 ``lsscsi -v``
 
 geeft u informatie 
 
 
-## COMMAND
+**COMMAND**
 udevadm info
 
 gaat tonen wat de kernel allemaal verzameld heeft aan info in de opstartprocedure
 
-##COMMAND
+**COMMAND**
 udevadm info /dev/sda3
 
 dan krijg je de details die verzameld zijn in deze map

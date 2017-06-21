@@ -64,4 +64,27 @@ ls t?
 ls t[a-z]*
 ```
 
+## Extended globbing
 
+```sh
+            # Make sure to check if extended globbing is on
+            # In interactive mode ~> on
+            # In scripts ~> off
+
+ls -d -d @(*.d|*.conf)
+
+            # All files that answer to .d OR .conf
+
+ls -d !(@(*.d|*.conf))
+
+            # Everything EXCEPT .d and .conf
+
+```
+
+## Reduce numbers
+
+```sh
+shuf -rn100 -e y y y y y y y y n | rm -iv {00..99} 
+
+                # You only let 1 live
+```
