@@ -25,10 +25,10 @@ Hints that might help:
 ```csv
 id;date;console;title;price
 1;21/06/2017;ps4;Persona 5;50,00
-2;21/06/2017;ps4;Final Fantasy XV; 50,00
-3;21/06/2017;ps4;Kingdom Hearts 1.5 + 2.5; 40,00
-4;20/06/2017;pc;Life is strange; 30,00
-5;19/06/2017;pc;Final Fantasy XIII; 20,00
-6;18/06/2017;ps4;Final Fantasy XV; 50,00
-7;17/06/2017;ps4;Final Fantasy XV; 50,00
+2;21/06/2017;ps4;Final Fantasy XV;50,00
+3;21/06/2017;ps4;Kingdom Hearts 1.5 + 2.5;40,00
+4;20/06/2017;pc;Life is strange;30,00
+5;19/06/2017;pc;Final Fantasy XIII;20,00
+6;18/06/2017;ps4;Final Fantasy XV;50,00
+7;17/06/2017;ps4;Final Fantasy XV;50,00
 ```
