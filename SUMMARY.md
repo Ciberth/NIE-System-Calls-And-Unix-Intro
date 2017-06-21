@@ -2,6 +2,7 @@
 
 * [System calls](c/README.md)
 * [Bash](bash/README.md)
+    * [Parse CSV](bash/parsecsv.md)
 * [Summaries](summaries/README.md)
 	* [Intro](summaries/intro.md)
     * [Labo C](summaries/laboc.md)
