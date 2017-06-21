@@ -3,6 +3,8 @@
 1. [Search specific string in a file over multiple files](#searchmul)
 2. [Man pages, info and help](#man)
 3. [Generate a random password](#pass)
+4. [File omleiding](#omleiding)
+5. [Shell globbing](#globbing)
 
 
 ## Search specific string in a file over multiple files <a name="searchmul"></a>
@@ -41,7 +43,7 @@ shuf -rn 16 -e {a..z}
 shuf -rn 16 -e {a..z} | paste -sd ''
 ```
 
-## File omleiding
+## File omleiding <a name="omleiding"></a>
 
 ```sh
 ls -l t xxx >> t1 2> t2     # Uitvoer omleiden en appenden naar t1
@@ -50,7 +52,7 @@ ls -l t xxx > t1 2>&1       # Hier uitvoer naar t1 en error naar uitvoer
                             # dus ook naar t1, let op volgorde!
 ```
 
-## Shell globbing
+## Shell globbing <a name="globbing"></a>
 
 ```sh
         # patronen
