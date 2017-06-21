@@ -31,13 +31,13 @@ udevadm info /dev/sda
 
 6. Wat is het voordeel van devtmps tegenover de oude methode?
 ```
--Fouten bij configureren van een specifiek device is niet fataal voor globaal systeem
--Linux credo: Probeer zoveel mogelijk in usermode uit te voeren, gaat de stabiliteit ten goede komen
--Enkel drivers & /dev/nodes voor aanwezige devices
--Geschikt voor alle devices
--Consitent na elke boot of hotplug (want consistente naamgeving van elk device)
--Enkel drivers voor aanwezige devices (kernel stuur bij auto detectie de elementaire info (fabriekant en type device) naar udev sturen, dan gaat udev deze kernel module laden. Hij weet dit want bij de installatie van devices wordt een nieuw lijntje aangemaakt in modules.alias, als hij deze info hierin vindt dat gaat hij de modinfo laden)
--Hergebruik van major nummers (en dus alle applicaties op de hoogte van alle beschikbaar applicaties)
+- Fouten bij configureren van een specifiek device is niet fataal voor globaal systeem
+- Linux credo: Probeer zoveel mogelijk in usermode uit te voeren, gaat de stabiliteit ten goede komen
+- Enkel drivers & /dev/nodes voor aanwezige devices
+- Geschikt voor alle devices
+- Consitent na elke boot of hotplug (want consistente naamgeving van elk device)
+- Enkel drivers voor aanwezige devices (kernel stuur bij auto detectie de elementaire info (fabriekant en type device) naar udev sturen, dan gaat udev deze kernel module laden. Hij weet dit want bij de installatie van devices wordt een nieuw lijntje aangemaakt in modules.alias, als hij deze info hierin vindt dat gaat hij de modinfo laden)
+- Hergebruik van major nummers (en dus alle applicaties op de hoogte van alle beschikbaar applicaties)
 ```
 
 7. Hoe weet je of een opdracht builtin is? Hoe kan je van zo’n commando Hulp opvragen?
@@ -74,7 +74,7 @@ Doormiddel van een wants of requires bij unit1 voor unit 2 bij opstarten van uni
 Wantedby of requiredby bij unit2 bij enabelen van de unit 2 zal bij unit1 een wants of requires worden gezet
 ```
 
-13. Je mount een usb stick/filesystem  en die is voorzien van label, hoe zorg je ervoor dat die altijd in dezelfde folder mount?
+13. Je mount een usb stick/filesystem en die is voorzien van label, hoe zorg je ervoor dat die altijd in dezelfde folder mount?
 ```
 mount –L label map
 ```
@@ -115,6 +115,7 @@ Systemctl start map-device.mount
 ```
 
 20. Schrijf een functie die als enige parameter een variabele heeft, die vervolgens deze variabele kan manipuleren en deze aangepaste variabele teruggeven.
+
 ```sh
 f(){
 	local pin, pout
@@ -130,4 +131,5 @@ function() {
 }
 function 10;
 echo $?;
+
 ```
