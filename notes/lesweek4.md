@@ -291,7 +291,7 @@ dus chmod 777 geeft iedereen alles 700 geeft enkel root alles 744 laat iedereen 
 
 umask 0022      # standaard 
 
-ùmask -p 
+umask -p 
 umask -S        # huidige instelling 
 
 umask 0077

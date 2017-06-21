@@ -32,3 +32,54 @@ id;date;console;title;price
 6;18/06/2017;ps4;Final Fantasy XV;50,00
 7;17/06/2017;ps4;Final Fantasy XV;50,00
 ```
+
+{%ace edit=true, lang='sh', theme='monokai'%}
+
+
+#!/bin/bash
+
+if [[ $# -lt 1 ]]; 
+then
+	printf "please give a csv-file as first param!\n";
+else
+	
+	# printf "contents of the csv file:\n";
+	# cat $1;
+	# echo;
+
+	ids=($(cat $1 | tail -n +2 | cut -d ';' -f 1));
+	dates=($(cat $1 | tail -n +2 | cut -d ';' -f 2));
+	consoles=($(cat $1 | tail -n +2 | cut -d ';' -f 3));
+	titels=($(cat $1 | tail -n +2 | cut -d ';' -f 4));
+	prizes=($(cat $1 | tail -n +2 | cut -d ';' -f 5));
+
+	sum=0;
+
+	for i in "${prizes[@]}"
+	do :
+		$sum+=$i;
+	done
+
+	echo $sum;
+
+	begin="${dates[0]}";
+	eind="${dates[-1]}";
+	interval="%s and %s";
+
+
+
+	
+	bigdata=$begin;
+	amountday=3;
+	bigamount=3;
+	title=aa;
+
+	printf "Total revenue between $interval is: %d.\n" $begin $eind $sum;
+	printf "Most artikels were sold on %s (%d).\n" $bigdata $amountday;
+	printf "Between $interval %s was sold %d times.\n" $begin $eind $title $bigamount;
+
+fi
+
+
+
+{%endace%}

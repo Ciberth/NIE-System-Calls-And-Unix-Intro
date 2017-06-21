@@ -116,3 +116,49 @@ paste -d ' ' xa*
 
 
 ```
+
+## Wc insert result in variable trick 
+
+```sh
+wc -w < winners.csv         # nu krijg je geen bestandsnaam meer
+
+strings -n $(wc -L competitors.csv) competitors.csv 
+
+                            # wc -L geeft grootste lijn
+                            # strings gebruiken om deze te zien
+```
+
+## Tr trick to chomp whitespace
+
+```sh
+echo 'x         y           z' | tr ' ' ','     # alle blancos vervangen door een ,
+
+echo 'x         y           z' | tr -s ' ' ','  # squeze dus dan maar 1 , meer
+```
+
+
+## Join 
+
+```sh
+```
+
+## Grep 
+
+```sh
+dig google.com | grep -A1 ";; ANSWER SECTION:" | grep -v ";; ANSWER SECTION:" 
+            # Basicly grep the ;; ANSWER SECTION and 1 extra line ~> A1
+            # Then invert the selection with -v
+            # Meaning we get the line after ;; ANSWER SECTION
+```
+
+## Primenumbers
+
+```sh
+x=0 ; while ((++x)) ; do y=($(factor $x)) ; ((${#y[@]} == 2)) && echo $x ; sleep 0.5 ; done 
+```
+
+
+## IP adresses
+
+```sh
+```
